@@ -10,12 +10,11 @@ public class LineFollow {
 	static double target = (white + black) / 2;
 
 	public static void follow(String sensor, String side, double kp, double p0) {
-		//tikoon
 		double error;
 
 		while (RunHandler.isRunning()) {
 			error = RobotMap.getSensor(sensor).read() - target;
-			if (side == "left") {
+			if (side.equalsIgnoreCase("left")) {
 				RobotMap.getChassis().tankDrive(p0 + (error * kp), p0);
 			} else {
 				RobotMap.getChassis().tankDrive(p0, p0 + (error * kp));
@@ -31,8 +30,10 @@ public class LineFollow {
 
 		while (RunHandler.isRunning() && RobotMap.getMotor("Lwheel").readEncoder() <= degrees
 				&& RobotMap.getMotor("Rwheel").readEncoder() <= degrees) {
+			
 			error = RobotMap.getSensor(sensor).read() - target;
-			if (side == "left") {
+			
+			if (side.equalsIgnoreCase("left")) {
 				System.out.println(p0 + (error * kp));
 				RobotMap.getChassis().tankDrive(p0 + (error * kp), p0);
 			} else {
