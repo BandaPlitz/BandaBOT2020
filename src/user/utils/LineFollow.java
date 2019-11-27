@@ -5,20 +5,31 @@ import robot.runs.RunHandler;
 
 public class LineFollow {
 
-	static double white = 0.33;
-	static double black = 0.97;
+	public static double white = 0.33;
+	public static double black = 0.97;
 	static double target = (white + black) / 2;
 
 	public static void follow(String sensor, String side, double kp, double p0) {
 		double error;
-
+		double leftSpeed = p0;
+		double rightSpeed = p0;
+		
+		RobotMap.getChassis().tankDrive(p0, p0);
+		
 		while (RunHandler.isRunning()) {
+			
+			leftSpeed = p0;
+			rightSpeed = p0;
+			
 			error = RobotMap.getSensor(sensor).read() - target;
 			if (side.equalsIgnoreCase("left")) {
-				RobotMap.getChassis().tankDrive(p0 + (error * kp), p0);
+				leftSpeed = p0 + error * kp;
 			} else {
-				RobotMap.getChassis().tankDrive(p0, p0 + (error * kp));
+				rightSpeed = p0 + error * kp;
 			}
+			
+			RobotMap.getChassis().tankDrive(leftSpeed, rightSpeed);
+			
 		}
 	}
 
@@ -26,19 +37,30 @@ public class LineFollow {
 		RobotMap.getMotor("Lwheel").resetEncoder();
 		RobotMap.getMotor("Rwheel").resetEncoder();
 
+		double leftSpeed = p0;
+		double rightSpeed = p0;
+		
 		double error;
 
+		RobotMap.getChassis().tankDrive(p0, p0);
+		
 		while (RunHandler.isRunning() && RobotMap.getMotor("Lwheel").readEncoder() <= degrees
 				&& RobotMap.getMotor("Rwheel").readEncoder() <= degrees) {
 			
-			error = RobotMap.getSensor(sensor).read() - target;
+			leftSpeed = p0;
+			rightSpeed = p0;
 			
+			error = RobotMap.getSensor(sensor).read() - target;
+	
 			if (side.equalsIgnoreCase("left")) {
 				System.out.println(p0 + (error * kp));
-				RobotMap.getChassis().tankDrive(p0 + (error * kp), p0);
+				leftSpeed = p0 + error * kp;
 			} else {
-				RobotMap.getChassis().tankDrive(p0, p0 + (error * kp));
+				rightSpeed = p0 + error * kp;
 			}
+			
+			RobotMap.getChassis().tankDrive(leftSpeed, rightSpeed);
+			
 			if (brake == true) {
 				RobotMap.getChassis().brake();
 
