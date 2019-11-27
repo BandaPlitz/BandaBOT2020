@@ -19,12 +19,12 @@ public class Run1 extends RobotRun {
 	@Override
 	public void runInstructions() {
 
-		RobotMap.getSensor("gyro").resetToCurrentValue();
+		//RobotMap.getSensor("gyro").resetToCurrentValue();
 		
-		GyroFollow.followDegrees(Convert.cmToDegrees(55), 0, 0.1, 0.6, 0.5, true);
-		GyroFollow.followDegrees(Convert.cmToDegrees(15), 0, 0.1, -0.4, 0.5, true);
+		//GyroFollow.followDegrees(Convert.cmToDegrees(55), 0, 0.1, 0.6, 0.5, true);
+		//GyroFollow.followDegrees(Convert.cmToDegrees(15), 0, 0.1, -0.4, 0.5, true);
 		
-		LineFollow.followDegrees(Convert.cmToDegrees(35), "lcolours", "left", 0.6, 0.6, true);
+		LineFollow.followDegrees(Convert.cmToDegrees(35), "lcolours", "left", 0.8, 0.2, true);
 
 		
 	}

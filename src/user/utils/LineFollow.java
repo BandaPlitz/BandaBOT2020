@@ -5,8 +5,8 @@ import robot.runs.RunHandler;
 
 public class LineFollow {
 
-	public static double white = 0.33;
-	public static double black = 0.97;
+	public static double white = 0.75;
+	public static double black = 0.07;
 	static double target = (white + black) / 2;
 
 	public static void follow(String sensor, String side, double kp, double p0) {
@@ -53,21 +53,19 @@ public class LineFollow {
 			error = RobotMap.getSensor(sensor).read() - target;
 	
 			if (side.equalsIgnoreCase("left")) {
-				System.out.println(p0 + (error * kp));
 				leftSpeed = p0 + error * kp;
 			} else {
 				rightSpeed = p0 + error * kp;
 			}
 			
 			RobotMap.getChassis().tankDrive(leftSpeed, rightSpeed);
-			
-			if (brake == true) {
-				RobotMap.getChassis().brake();
+		}
+		
+		if (brake == true) {
+			RobotMap.getChassis().brake();
 
-			} else {
-				RobotMap.getChassis().coast();
-			}
-
+		} else {
+			RobotMap.getChassis().coast();
 		}
 	}
 
