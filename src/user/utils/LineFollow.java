@@ -10,7 +10,7 @@ public class LineFollow {
 	static double target = (white + black) / 2;
 
 	public static void follow(String sensor, String side, double kp, double p0) {
-
+		//tikoon
 		double error;
 
 		while (RunHandler.isRunning()) {
