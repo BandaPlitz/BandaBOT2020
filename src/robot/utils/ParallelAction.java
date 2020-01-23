@@ -1,4 +1,4 @@
-package robot.runs.parallel;
+package robot.utils;
 
 public class ParallelAction extends Thread{
 	
@@ -10,7 +10,6 @@ public class ParallelAction extends Thread{
 	
 	@Override
 	public void run() {
-		System.out.println("Running action");
 		a.execute();
 	}
 	

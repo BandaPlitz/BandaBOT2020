@@ -1,10 +1,30 @@
 package robot;
 
+import lejos.utility.Delay;
 import robot.hardware.motors.RobotMotor;
 import robot.hardware.sensors.RobotSensor;
 
 public class RobotUtils {
 	private RobotUtils() {
+	}
+	
+	public static void testHardware() {
+		RobotMotor[] motors = RobotMap.getMotors();
+		RobotSensor[] sensors = RobotMap.getSensors();
+		
+		for (int i = 0; i < motors.length; i++) {
+			if(motors[i] == null) continue;
+			motors[i].drive(0.01, 0.8);
+			Delay.msDelay(50);
+			motors[i].brake(true);
+			motors[i].drive(1.0, 1.0);
+			motors[i].brake(true);
+		}
+		
+		for (int i = 0; i < sensors.length; i++) {
+			if(sensors[i] == null) continue;
+			sensors[i].read();
+		}
 	}
 
 	public static void calibrateAllSensors() {
@@ -33,6 +53,15 @@ public class RobotUtils {
 		for (int i = 0; i < motors.length; i++) {
 			if (motors[i] != null) {
 				motors[i].brake(true);
+			}
+		}
+	}
+	
+	public static void floatAllMotors() {
+		RobotMotor[] motors = RobotMap.getMotors();
+		for (int i = 0; i < motors.length; i++) {
+			if (motors[i] != null) {
+				motors[i].coast();
 			}
 		}
 	}

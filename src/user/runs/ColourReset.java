@@ -17,7 +17,6 @@ public class ColourReset extends RobotRun {
 
 	@Override
 	public void runInstructions() {
-		LCD.drawString("Place Lcolor sensor \n on black", 2, 0);
 		
 		WaitCondition enterPressed = new WaitCondition() {
 			
@@ -27,17 +26,37 @@ public class ColourReset extends RobotRun {
 			}
 		};
 		
+		LCD.drawString("L on black", 0, 0);
+		
 		Wait.waitFor(enterPressed);
 		
 		LineFollow.black = RobotMap.getSensor("lcolours").read();
 		
-		LCD.drawString("Place Lcolor sensor \n on white", 2, 0);
+		LCD.clear();
+		
+		Wait.waitForSeconds(0.1);
+		
+		LCD.drawString("L on white", 0, 0);
 		
 		Wait.waitFor(enterPressed);
 		
 		LineFollow.white = RobotMap.getSensor("lcolours").read();
 		
-		System.out.println("white: " + LineFollow.white + "\n black: " + LineFollow.black);
+		LCD.clear();
+		
+		Wait.waitForSeconds(0.1);
+		
+		double white = (int) (LineFollow.white * 100);
+		double black = (int) (LineFollow.black * 100);
+		
+		white /= 100;
+		black /= 100;
+		
+		LCD.drawString("white: " + white, 0, 0);
+		LCD.drawString("black: " + black, 0, 1);
+		
+		Wait.waitFor(enterPressed);
+		LCD.clear();
 	}
 
 	
