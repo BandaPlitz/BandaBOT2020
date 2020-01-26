@@ -5,6 +5,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import robot.RobotMap;
 import robot.exceptions.HardwareCreationError;
+import robot.utils.Condition;
 
 public abstract class RobotSensor {
 

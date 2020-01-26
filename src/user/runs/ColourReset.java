@@ -4,8 +4,8 @@ import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import robot.RobotMap;
 import robot.runs.RobotRun;
+import robot.utils.Condition;
 import robot.utils.Wait;
-import robot.utils.WaitCondition;
 import user.utils.LineFollow;
 
 public class ColourReset extends RobotRun {
@@ -18,7 +18,7 @@ public class ColourReset extends RobotRun {
 	@Override
 	public void runInstructions() {
 		
-		WaitCondition enterPressed = new WaitCondition() {
+		Condition enterPressed = new Condition() {
 			
 			@Override
 			public boolean evaluate() {
@@ -44,7 +44,7 @@ public class ColourReset extends RobotRun {
 		
 		LCD.clear();
 		
-		Wait.waitForSeconds(0.1);
+		Wait.waitForSeconds(0.5);
 		
 		double white = (int) (LineFollow.white * 100);
 		double black = (int) (LineFollow.black * 100);

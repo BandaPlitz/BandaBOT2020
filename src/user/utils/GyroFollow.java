@@ -16,19 +16,20 @@ public class GyroFollow {
 		RobotMap.getMotor("Lwheel").resetEncoder();
 		RobotMap.getMotor("Rwheel").resetEncoder();
 
+		RobotMap.getMotor("Lwheel").setAcceleration(acceleration);
+		RobotMap.getMotor("Rwheel").setAcceleration(acceleration);
+		
 		// while wheels travelled less than degrees
 		while (RunHandler.isRunning() && Math.abs(RobotMap.getMotor("Rwheel").readEncoder()) <= Math.abs(degrees)
 				&& Math.abs(RobotMap.getMotor("Lwheel").readEncoder()) <= Math.abs(degrees)) {
 			error = (int) (RobotMap.getSensor("gyro").read() - targetDegrees);
 			error /= 180;
-
+			
 			// checks if we go backwards
-			if (p0 > 0)
+			if (p0 < 0)
 				error = -error;
 
 			// drives and repairs the mistakes
-			RobotMap.getMotor("Lwheel").setAcceleration(acceleration);
-			RobotMap.getMotor("Rwheel").setAcceleration(acceleration);
 			RobotMap.getChassis().tankDrive(p0, p0 + (error * kp));
 
 		}
