@@ -22,7 +22,11 @@ public class ColourReset extends RobotRun {
 			
 			@Override
 			public boolean evaluate() {
-				return Button.getButtons() == Button.ID_ENTER;
+				if(Button.getButtons() == Button.ID_ENTER) {
+					while(Button.getButtons() == Button.ID_ENTER);
+					return true;
+				}
+				return false;
 			}
 		};
 		

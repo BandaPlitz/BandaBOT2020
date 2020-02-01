@@ -30,7 +30,7 @@ public class GyroFollow {
 				error = -error;
 
 			// drives and repairs the mistakes
-			RobotMap.getChassis().tankDrive(p0, p0 + (error * kp));
+			RobotMap.getChassis().tankDrive(p0, p0 + (error * kp), acceleration);
 
 		}
 		
