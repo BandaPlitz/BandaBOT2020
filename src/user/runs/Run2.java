@@ -16,7 +16,7 @@ public class Run2 extends RobotRun {
 	public void runInstructions() {
 		
 		
-		
+		RobotMap.getSensor("gyro").resetToCurrentValue();
 		//drive towards red circle ------------- speed, distance in degrees,    brake?
 		GyroFollow.followDegrees(Convert.cmToDegrees(75), 0, 0.8, 0.5, 0.3, false);
 		//back off slowly

@@ -28,7 +28,6 @@ public class Run1 extends RobotRun {
 		RobotMap.getSensor("gyro").resetToCurrentValue();
 		// עיגול גדול 125 נקודות
 		RobotMap.getChassis().forwardDriveDegrees(0.7, Convert.cmToDegrees(55), false);
-		//GyroFollow.followDegrees(Convert.cmToDegrees(55), -20, 0.9, 0.7, 0.35, false);
 		Wait.waitForSeconds(0.1);
 		GyroFollow.followDegrees(Convert.cmToDegrees(25), 0, 0.15, -0.7, false);
 		RobotMap.getChassis().tankDriveDegrees(0.5, -0.5, 0.2, 370, false);
