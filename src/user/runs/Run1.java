@@ -2,8 +2,6 @@ package user.runs;
 
 import robot.RobotMap;
 import robot.runs.RobotRun;
-import robot.runs.RunHandler;
-import robot.utils.Action;
 import robot.utils.Wait;
 import user.utils.Convert;
 import user.utils.GyroFollow;
@@ -29,11 +27,11 @@ public class Run1 extends RobotRun {
 		
 		RobotMap.getSensor("gyro").resetToCurrentValue();
 		// עיגול גדול 125 נקודות
-		//RobotMap.getChassis().forwardDriveDegrees(0.7, Convert.cmToDegrees(55), false);
-		GyroFollow.followDegrees(Convert.cmToDegrees(55), -20, 0.9, 0.7, 0.35, false);
+		RobotMap.getChassis().forwardDriveDegrees(0.7, Convert.cmToDegrees(55), false);
+		//GyroFollow.followDegrees(Convert.cmToDegrees(55), -20, 0.9, 0.7, 0.35, false);
 		Wait.waitForSeconds(0.1);
 		GyroFollow.followDegrees(Convert.cmToDegrees(25), 0, 0.15, -0.7, false);
-		RobotMap.getChassis().tankDriveDegrees(0.5, -0.5, 0.2, 300, false);
+		RobotMap.getChassis().tankDriveDegrees(0.5, -0.5, 0.2, 370, false);
 		GyroFollow.followDegrees(Convert.cmToDegrees(100), 40, 0.2, -0.8, false);
 		
 	}
