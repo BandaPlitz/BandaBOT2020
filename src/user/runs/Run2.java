@@ -4,6 +4,7 @@ import robot.RobotMap;
 import robot.runs.RobotRun;
 import user.utils.Convert;
 import user.utils.GyroFollow;
+import user.utils.GyroRotate;
 
 public class Run2 extends RobotRun {
 
@@ -17,11 +18,8 @@ public class Run2 extends RobotRun {
 		
 		
 		RobotMap.getSensor("gyro").resetToCurrentValue();
-		//drive towards red circle ------------- speed, distance in degrees,    brake?
-		GyroFollow.followDegrees(Convert.cmToDegrees(75), 0, 0.8, 0.5, 0.3, false);
-		//back off slowly
-		RobotMap.getChassis().backwardDriveDegrees(0.4, Convert.cmToDegrees(20), false);
-		//drive back to home
-		GyroFollow.followDegrees(Convert.cmToDegrees(150), 0, 0.7, -0.9, 0.3, true);		
+		GyroFollow.followDegrees(10000, 0, 0.8, 0.8, 0.4, true);
+		//GyroRotate.TurnTo(90);
+		
 	}
 }

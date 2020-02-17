@@ -5,6 +5,7 @@ import robot.runs.RobotRun;
 import robot.utils.Wait;
 import user.utils.Convert;
 import user.utils.GyroFollow;
+import user.utils.GyroRotate;
 
 public class Run0 extends RobotRun {
 
@@ -17,9 +18,7 @@ public class Run0 extends RobotRun {
 	{
 		
 		RobotMap.getSensor("gyro").resetToCurrentValue();
-
-		GyroFollow.followDegrees( Convert.cmToDegrees(27), 0, 0.4, 0.4, true);
-		Wait.waitForSeconds(0.1);
+		
 		RobotMap.getChassis().tankDriveDegrees(-0.4, 0.4, 250, false);
 		RobotMap.getChassis().backwardDriveSeconds(0.5, 2, true);
 		Wait.waitForSeconds(0.2);
