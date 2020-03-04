@@ -5,11 +5,11 @@ import robot.runs.RunHandler;
 
 public class GyroFollow {
 
-	public static void followDegrees(int degrees, int targetDegrees, double kp, double p0, boolean brake) {
+	public static void followDegrees(double degrees, double targetDegrees, double kp, double p0, boolean brake) {
 		followDegrees(degrees, targetDegrees, kp, p0, 1.0, brake);
 	}
 
-	public static void followDegrees(int degrees, int targetDegrees, double kp, double p0, double acceleration,
+	public static void followDegrees(double degrees, double targetDegrees, double kp, double p0, double acceleration,
 			boolean brake) {
 		double error;
 		// resets encoder

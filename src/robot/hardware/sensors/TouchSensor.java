@@ -12,7 +12,6 @@ public class TouchSensor extends RobotSensor {
 		this.s = t.getTouchMode();
 	}
 	
-	@Override
 	public double read() {
 		return this.read(1);
 	}

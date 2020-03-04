@@ -33,7 +33,7 @@ public class LineFollow {
 		}
 	}
 
-	public static void followDegrees(int degrees, String sensor, String side, double kp, double p0, boolean brake) {
+	public static void followDegrees(double degrees, String sensor, String side, double kp, double p0, boolean brake) {
 		RobotMap.getMotor("Lwheel").resetEncoder();
 		RobotMap.getMotor("Rwheel").resetEncoder();
 

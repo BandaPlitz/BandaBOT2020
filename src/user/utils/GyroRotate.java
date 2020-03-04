@@ -3,28 +3,21 @@ package user.utils;
 import robot.RobotMap;
 
 public class GyroRotate {
-	private static double Kp = 0.8;
 
-	public static void TurnTo(int angle) {
+	public static void TurnTo(double angle, double kp) {
 		double currAngle = Clamp.angle(RobotMap.getSensor("gyro").read());
-		double error = (int) (angle - currAngle);
-		while (Math.abs(error) > 5) {
+		double error = angle - currAngle;
+		while (Math.abs(error) > 3) {
 			currAngle = Clamp.angle(RobotMap.getSensor("gyro").read());
 			error = angle - currAngle;
-			double speedOne = error / 180 * Kp;
-			double speedTwo = -1 * error / 180 * Kp;
-			System.out.println(speedOne);
-			if (error > 5) {
-				RobotMap.getChassis().tankDrive(speedOne, speedTwo);
+			double speed = error / 180 * kp;
+			if (error > 3) {
+				RobotMap.getChassis().tankDrive(Clamp.Speed(speed), Clamp.Speed(-speed));
+			} else {
+				RobotMap.getChassis().tankDrive(-Math.abs(Clamp.Speed(speed)), Math.abs(Clamp.Speed(speed)));
 			}
-			if (error < -5) {
-				RobotMap.getChassis().tankDrive(speedTwo, speedOne);
-			}
-
 		}
-
 		RobotMap.getChassis().brake();
-
 	}
 
 }

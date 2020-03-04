@@ -22,6 +22,6 @@ public class Clamp {
 
 	public static double angle(double value) {
 		double realAngle = value % 360;
-		return -1 * (realAngle - 180);
+		return realAngle;
 	}
 }
